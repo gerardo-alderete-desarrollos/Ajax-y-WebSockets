@@ -13,8 +13,23 @@ b.addEventListener('click', evt => {
     // Qué se debe hacer con la data?
     xhr.addEventListener('load', e => {
 
-        const data = JSON.parse(e.target.responseText)
-        draw(data)
+        switch (e.target.status) {
+            case 200:
+                const data = JSON.parse(e.target.responseText)
+                draw(data)
+                break
+            case 401:
+                c.textContent = 'NO ESTAS AUTORIZADO PARA REALIZAR ESTA ACCION'
+                break
+            case 404:
+                c.textContent = 'NO existe informacion... paggina 404'
+                break
+            case 500:
+                c.textContent = 'Hubo un error en el servidor'
+                break
+
+        }
+               
          l.style.display = 'none'
     })
     //Realice la peticion
