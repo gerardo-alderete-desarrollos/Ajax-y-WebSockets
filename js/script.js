@@ -24,6 +24,9 @@ b.addEventListener('click', evt => {
 })
 
 const draw = data => {
+    c.innerHTML = ''
+    const f = document.createDocumentFragment()
+
     data.forEach(n => {
         const container = document.createElement('div')
         const title = document.createElement('h2')
@@ -38,7 +41,7 @@ const draw = data => {
         container.appendChild(content)
         container.appendChild(datenew)
 
-        c.appendChild(container)
-
+        f.appendChild(container)
     });
+    c.appendChild(f)
 }
