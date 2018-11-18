@@ -1,7 +1,11 @@
 const c = document.getElementById('myContent')
 const b = document.getElementById('btnLoad')
+const l = document.getElementById('loading')
+
+l.style.display = 'none'
 
 b.addEventListener('click', evt => {
+    l.style.display = 'block'
     const xhr = new XMLHttpRequest()
     console.log(`Objeto creado : ${xhr.readyState}`)
 
@@ -12,7 +16,8 @@ b.addEventListener('click', evt => {
     xhr.addEventListener('load', e => {
         console.log(e.target)
         // c.innerHTML = e.target.responseText
-    console.log(`Objeto cargado : ${xhr.readyState}`)
+         console.log(`Objeto cargado : ${xhr.readyState}`)
+         l.style.display = 'none'
         
     })
     //Realice la peticion
