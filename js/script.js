@@ -22,7 +22,7 @@ b.addEventListener('click', evt => {
                 c.textContent = 'NO ESTAS AUTORIZADO PARA REALIZAR ESTA ACCION'
                 break
             case 404:
-                c.textContent = 'NO existe informacion... paggina 404'
+                c.textContent = 'NO existe informacion... pagina 404'
                 break
             case 500:
                 c.textContent = 'Hubo un error en el servidor'
