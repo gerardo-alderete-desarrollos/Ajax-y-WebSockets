@@ -28,15 +28,20 @@ btn.addEventListener('click', () => {
     loadComics()
 })
 
-const loadComics = async () => {
-    const response = await axios.get(url)
-    switch (response.status)  {
-        case STATUS_OK:
-            draw(response.data.data.results)
-            break
-        case STATUS_NOT_FOUND:
-            console.log('No se encontro informacion')
-            break
-    }
-    console.log(response)
+const loadComics =  () => {
+    fetch(url)
+    .then(response => response.json())
+    .then(response => {
+        draw(response.data.results)
+    })
+
+    // switch (response.status)  {
+    //     case STATUS_OK:
+    //         draw(response.data.data.results)
+    //         break
+    //     case STATUS_NOT_FOUND:
+    //         console.log('No se encontro informacion')
+    //         break
+    // }
+    // console.log(response)
 }
