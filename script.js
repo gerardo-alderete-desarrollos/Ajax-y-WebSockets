@@ -28,23 +28,20 @@ btn.addEventListener('click', () => {
     loadComics()
 })
 
-const loadComics =  () => {
-    fetch(url)
-    .then(response => {
-        switch (response.status)  {
-            case STATUS_OK:
-                return response.json()
-            case STATUS_NOT_FOUND:
-                console.log('No se encontro informacion')
-                break
-        }
+const loadComics =  async () => {
+    const response = await fetch(url)
+    switch (response.status)  {
+        case STATUS_OK:
+            const data = await response.json()
+            draw(data.data.results)
+            break
+        case STATUS_NOT_FOUND:
+            console.log('No se encontro informacion')
+            break
+    }
         
-    })
-    .then(response => {
-        draw(response.data.results)
-    })
-    .catch(error =>{
-        console.log(error)
-    })
+
+   
+   
 
 }
