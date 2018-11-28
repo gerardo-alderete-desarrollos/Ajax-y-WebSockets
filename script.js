@@ -7,24 +7,22 @@ const apiKey = '54e8dba6a3dde372103b682af0265855'
 const url = `https://gateway.marvel.com:443/v1/public/characters?name=thor&apikey=${apiKey}`
 
 
-// const draw = data => {
-//     const fragment = document.createDocumentFragment()
-//     data.forEach(comic => {
-//         const container = document.createElement('div')
-//         const title = document.createElement('h2')
-//         const image = document.createElement('img')
-        
-//         title.textContent = comic.name
-//         image.src = `${comic.thumbnail.path}/portrait_incredible.${comic.thumbnail.extension}`
-        
-//         container.appendChild(title)
-//         container.appendChild(image)
-//         fragment.appendChild(container)
+const draw = data => {
+    const container = document.createElement('div')
 
-//     })
+    data.forEach(comic => {
+       const comicHTML =
+            `<div>
+                <h2>${comic.name}</h2>
+                <img src="${comic.thumbnail.path}/portrait_incredible.${comic.thumbnail.extension}">
+            </div>`
+        
+        container.insertAdjacentHTML('beforeend', comicHTML)
 
-//     myContent.appendChild(fragment)
-// }
+    })
+
+    myContent.appendChild(container)
+}
 
 btn.addEventListener('click', () => {
     loadComics()
