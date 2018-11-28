@@ -12,7 +12,7 @@ myHeaders.append('Autorization', 'Bearerasdfasdf')
 const  myConfig = {
     method: 'POST',
     headers: myHeaders,
-    body: persona
+    body: JSON.encode(persona)
 }
 
 fetch('/asdfadf', myConfig)
