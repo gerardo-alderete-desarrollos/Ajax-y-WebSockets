@@ -30,18 +30,21 @@ btn.addEventListener('click', () => {
 
 const loadComics =  () => {
     fetch(url)
-    .then(response => response.json())
+    .then(response => {
+        switch (response.status)  {
+            case STATUS_OK:
+                return response.json()
+            case STATUS_NOT_FOUND:
+                console.log('No se encontro informacion')
+                break
+        }
+        
+    })
     .then(response => {
         draw(response.data.results)
     })
+    .catch(error =>{
+        console.log(error)
+    })
 
-    // switch (response.status)  {
-    //     case STATUS_OK:
-    //         draw(response.data.data.results)
-    //         break
-    //     case STATUS_NOT_FOUND:
-    //         console.log('No se encontro informacion')
-    //         break
-    // }
-    // console.log(response)
 }
