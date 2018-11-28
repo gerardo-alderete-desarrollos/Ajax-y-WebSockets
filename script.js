@@ -13,8 +13,7 @@ const ajax = request => {
 const showMarvel = async () => {
     const hash = '00e02946f327fbee15d329d24e6c6a3a'
     const apiKey = '54e8dba6a3dde372103b682af0265855'
-    const url = `http://gateway.marvel.com/v1/public/characters
-    ?nameStartsWith=iron%20man&limit=20&ts=1&apikey=${apiKey}&hash=${hash}`
+    const url = `https://gateway.marvel.com:443/v1/public/characters?name=thor&apikey=${apiKey}`
 
     const r = { method: 'GET', url: url}
     const response = await ajax(r)
@@ -44,7 +43,7 @@ const draw = data => {
         image.src = `${comic.thumbnail.path}/portrait_incredible.${comic.thumbnail.extension}`
         
         container.appendChild(title)
-        container.appendChild(img)
+        container.appendChild(image)
         fragment.appendChild(container)
 
     })
