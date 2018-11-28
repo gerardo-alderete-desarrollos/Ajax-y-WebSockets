@@ -1,47 +1,20 @@
-const STATUS_OK = 200
-const STATUS_CREATE = 201
-const STATUS_NOT_FOUND = 404
-
-const hash = '00e02946f327fbee15d329d24e6c6a3a'
-const apiKey = '54e8dba6a3dde372103b682af0265855'
-const url = `https://gateway.marvel.com:443/v1/public/characters?name=thor&apikey=${apiKey}`
-
-
-const draw = data => {
-    const container = document.createElement('div')
-
-    data.forEach(comic => {
-       const comicHTML =
-            `<div>
-                <h2>${comic.name}</h2>
-                <img src="${comic.thumbnail.path}/portrait_incredible.${comic.thumbnail.extension}">
-            </div>`
-        
-        container.insertAdjacentHTML('beforeend', comicHTML)
-
-    })
-
-    myContent.appendChild(container)
+const persona = {
+    name: "Dorian",
+    lastName: "Designs",
+    age: 25,
+    active: true
 }
 
-btn.addEventListener('click', () => {
-    loadComics()
-})
+const myHeaders = new Headers()
+myHeaders.append('ContentType', 'application/json')
+myHeaders.append('Autorization', 'Bearerasdfasdf')
 
-const loadComics =  async () => {
-    const response = await fetch(url)
-    switch (response.status)  {
-        case STATUS_OK:
-            const data = await response.json()
-            draw(data.data.results)
-            break
-        case STATUS_NOT_FOUND:
-            console.log('No se encontro informacion')
-            break
-    }
-        
-
-   
-   
-
+const  myConfig = {
+    method: 'POST',
+    headers: myHeaders,
+    body: persona
 }
+
+fetch('/asdfadf', myConfig)
+.then(response => response.json())
+.then(response => draw(response.data))
