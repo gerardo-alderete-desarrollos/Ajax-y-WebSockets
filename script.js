@@ -1,20 +1,23 @@
-const persona = {
-    name: "Dorian",
-    lastName: "Designs",
-    age: 25,
-    active: true
+let ws = null
+
+const setText = data => {
+    const msg = `<div>${data}</div>`
+    chat.insertAdjacentHTML('beforeend')
 }
+btnConnect.addEventListener('click', e => {
+    ws = new WebSocket('ws://demos.kaazing.com/echo')
+    ws.onopen = () => setText('Conectado')
+    ws.onclose = () => setText('Desconectado')
+    ws.onerror = () => setText(e)
+    ws.onmessage = () => {
+        setText(e.data)
+    }
+})
 
-const myHeaders = new Headers()
-myHeaders.append('ContentType', 'application/json')
-myHeaders.append('Autorization', 'Bearerasdfasdf')
+btnDisconnect.addEventListener('click', e=> {
+    ws.close()
+})
 
-const  myConfig = {
-    method: 'POST',
-    headers: myHeaders,
-    body: JSON.encode(persona)
-}
-
-fetch('/asdfadf', myConfig)
-.then(response => response.json())
-.then(response => draw(response.data))
+btnSend.addEventListener('click', () => {
+    ws.send(txtMsg.value)
+})
