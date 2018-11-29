@@ -2,7 +2,7 @@ let ws = null
 
 const setText = data => {
     const msg = `<div>${data}</div>`
-    chat.insertAdjacentHTML('beforeend')
+    chat.insertAdjacentHTML('beforeend', msg)
 }
 btnConnect.addEventListener('click', e => {
     ws = new WebSocket('ws://demos.kaazing.com/echo')
